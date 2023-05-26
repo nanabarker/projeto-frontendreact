@@ -6,7 +6,7 @@ export const ProductCardStyle = styled.div`
   height: 300px;
 `;
 
-export const ButtonStyle = styled.button`
+export const Button = styled.button`
   width: 100%;
   height: 30px;
 `;
