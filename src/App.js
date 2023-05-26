@@ -10,16 +10,35 @@ import { productList } from "./assents/productsList";
 function App() {
   const [cart, setCart] = useState("");
   const [amount, setAmount] = useState("");
-  const [minFilter, setMinFilter] = useState("");
-  const [maxFilter, setMaxFilter] = useState("");
+  const [minFilter, setMinFilter] = useState(0);
+  const [maxFilter, setMaxFilter] = useState(0);
   const [searchFilter, setSearchFilter] = useState("");
 
   return (
     <AppStyle>
       <GlobalStyled />
-      <Filters />
-      <Home productList={productList} />
-      <Cart />
+      <Filters
+        minFilter={minFilter}
+        setMinFilter={setMinFilter}
+        maxFilter={maxFilter}
+        setMaxFilter={setMaxFilter}
+        searchFilter={searchFilter}
+        setSearchFilter={setSearchFilter}
+      />
+      <Home
+        productList={productList}
+        amount={amount}
+        setAmount={setAmount}
+        cart={cart}
+        setCart={setCart}
+      />
+
+      <Cart
+        amount={amount}
+        setAmount={setAmount}
+        cart={cart}
+        setCart={setCart}
+      />
     </AppStyle>
   );
 }
