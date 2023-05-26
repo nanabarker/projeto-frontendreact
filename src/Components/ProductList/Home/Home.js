@@ -2,7 +2,14 @@ import React, { useState } from "react";
 import ProductCard from "../ProductCard/ProductCard";
 import { CardBox, HomeStyle, InfoBox } from "./HomeStyle";
 
-export default function Home({ productList }) {
+export default function Home({
+  productList,
+  amount,
+  setAmount,
+  cart,
+
+  setCart,
+}) {
   const [ordination, setOrdination] = useState("");
 
   function ordinationSelect(event) {
