@@ -8,8 +8,8 @@ import { AppStyle } from "./AppStyled";
 import { productList } from "./assents/productsList";
 
 function App() {
-  const [cart, setCart] = useState("");
-  const [amount, setAmount] = useState("");
+  const [cart, setCart] = useState([]);
+  const [amount, setAmount] = useState(0);
   const [minFilter, setMinFilter] = useState(0);
   const [maxFilter, setMaxFilter] = useState(0);
   const [searchFilter, setSearchFilter] = useState("");
