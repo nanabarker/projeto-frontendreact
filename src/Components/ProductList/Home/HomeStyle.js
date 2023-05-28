@@ -1,13 +1,15 @@
 import styled from "styled-components";
 
 export const HomeStyle = styled.div`
-  border: 1px solid black;
   grid-column: 2/7;
+  color: white;
 `;
 
 export const InfoBox = styled.div`
   display: flex;
   justify-content: space-between;
+  font-weight: bold;
+  font-size: 20px;
 `;
 
 export const CardBox = styled.div`
