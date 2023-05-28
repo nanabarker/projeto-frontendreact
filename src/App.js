@@ -17,6 +17,26 @@ function App() {
   const [sortedList, setSortedList] = useState([...productList]);
 
   useEffect(() => {
+    setTimeout(() => {
+      const cartString = JSON.stringify(cart);
+      const amoutString = JSON.stringify(amount);
+      localStorage.setItem("cart", cartString);
+      localStorage.setItem("amount", amoutString);
+    }, 10);
+  }, [cart]);
+
+  useEffect(() => {
+    const newCart = localStorage.getItem("cart");
+    const newAmount = localStorage.getItem("amount");
+
+    const cartArray = JSON.parse(newCart);
+    const amountNumber = JSON.parse(newAmount);
+
+    setCart([...cartArray]);
+    setAmount(amountNumber);
+  }, []);
+
+  useEffect(() => {
     setFilteredList(
       sortedList
         .filter((product) => {
