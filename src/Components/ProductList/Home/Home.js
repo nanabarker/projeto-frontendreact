@@ -1,9 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ProductCard from "../ProductCard/ProductCard";
 import { CardBox, HomeStyle, InfoBox } from "./HomeStyle";
 
 export default function Home({
-  productList,
+  sortedList,
+  setSortedList,
+  filteredList,
+  setFilteredList,
   amount,
   setAmount,
   cart,
@@ -15,9 +18,9 @@ export default function Home({
     setOrdination(event.target.value);
   }
 
-  // const renderAllCards = productList.map((product) => {
+  // const renderAllCards = filteredList.map((product) => {
   //   console.log(product);
-  //   return <ProductCard productList={product} />;
+  //   return <ProductCard filteredList={product} />;
   // });
 
   function addToCart(product) {
@@ -49,14 +52,92 @@ export default function Home({
   }
   console.log("Valor Total:", amount);
   // console.log(cart, "Carrinho de Compras");
+
+  useEffect(() => {
+    filteredList.sort((firstValue, secondValue) => {
+      if (ordination === "Crescente") {
+        if (firstValue.value < secondValue.value) {
+          return -1;
+        }
+        if (firstValue.value > secondValue.value) {
+          return 1;
+        }
+      }
+      if (ordination === "Decrescente") {
+        if (firstValue.value > secondValue.value) {
+          return -1;
+        }
+        if (firstValue.value < secondValue.value) {
+          return 1;
+        }
+      }
+
+      if (ordination === "A-Z") {
+        if (firstValue.name < secondValue.name) {
+          return -1;
+        }
+        if (firstValue.name > secondValue.name) {
+          return 1;
+        }
+      }
+      if (ordination === "Z-A") {
+        if (firstValue.name > secondValue.name) {
+          return -1;
+        }
+        if (firstValue.name < secondValue.name) {
+          return 1;
+        }
+      }
+    });
+    sortedList.sort((firstValue, secondValue) => {
+      if (ordination === "Crescente") {
+        if (firstValue.value < secondValue.value) {
+          return -1;
+        }
+        if (firstValue.value > secondValue.value) {
+          return 1;
+        }
+      }
+      if (ordination === "Decrescente") {
+        if (firstValue.value > secondValue.value) {
+          return -1;
+        }
+        if (firstValue.value < secondValue.value) {
+          return 1;
+        }
+      }
+
+      if (ordination === "A-Z") {
+        if (firstValue.name < secondValue.name) {
+          return -1;
+        }
+        if (firstValue.name > secondValue.name) {
+          return 1;
+        }
+      }
+      if (ordination === "Z-A") {
+        if (firstValue.name > secondValue.name) {
+          return -1;
+        }
+        if (firstValue.name < secondValue.name) {
+          return 1;
+        }
+      }
+    });
+    setFilteredList([...filteredList]);
+    setSortedList([...sortedList]);
+  }, [ordination]);
+
   return (
     <HomeStyle>
       <InfoBox>
-        <span>Quantidade de Produtos: {productList.length}</span>
+        <span>Quantidade de Produtos: {filteredList.length}</span>
         <span>
           Ordenação:
           <select value={ordination} onChange={ordinationSelect}>
             <option></option>
+            <option>A-Z</option>
+            <option>Z-A</option>
             <option>Crescente</option>
             <option>Decrescente</option>
           </select>
@@ -66,7 +147,7 @@ export default function Home({
         {/* {renderAllCards} */}
         {/* Chamada de componente uando o MAP */}
 
-        {productList.map((product) => {
+        {filteredList.map((product) => {
           return (
             <ProductCard
               productList={product}
@@ -76,9 +157,9 @@ export default function Home({
           );
         })}
         {/* O uso não é mais necessário porque chamei no MAP */}
-        {/* <ProductCard productList={productList[0]} />
-        <ProductCard productList={productList[1]} />
-        <ProductCard productList={productList[2]} /> */}
+        {/* <ProductCard filteredList={filteredList[0]} />
+        <ProductCard filteredList={filteredList[1]} />
+        <ProductCard filteredList={filteredList[2]} /> */}
       </CardBox>
     </HomeStyle>
   );
